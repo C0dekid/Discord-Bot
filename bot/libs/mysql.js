@@ -17,7 +17,7 @@ class Database {
     }
 
     startConnection() {
-        reconnTries++;
+        const self = this;
         return new Promise((resolve, reject) => {
             db.connect((error) => {
                 if(error)
@@ -25,29 +25,18 @@ class Database {
                     reject(error.errno);
 
                 }else{
-    
-                    Log.i("MySQL", "Connected to MySQL Database!");
-                    this.connected = true;
-                    this.keepAlive();
-    
-                    db.on("error", (error) => {
-                        Log.e("MySQL", "Connection has been dropped!");
+                    db.on("error", function(error) {
+                        Log.e("MySQL", "Connection has been dropped! Error: " + error);
                         if(config.Pushbullet.enable === true)
                         {
                             Pushbullet.push('Discord Bot [MySQL]', "The MySQL Server went offline! " + error).then(msg => {});
                         }
-    
-                        discord.destroy();
+
                         db.destroy();
+                        discord.destroy();
 
-                        keepAliveTimer = setInterval(this.startConnection(), 10000);
-                        if(reconnTries >= 3)
-                        {
-                            clearInterval(keepAliveTimer);
-                            keepAliveTimer = null;
-
-                            Log.e("MySQL", "Failed to reconnect!");
-                        }
+                        // Not connected anymore
+                        self.connected = false;
                     });
 
                     resolve('connected');
