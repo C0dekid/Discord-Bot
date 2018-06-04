@@ -6,7 +6,6 @@ const { Test, isString, isMixed } = require("../../helpers/MessagesHelper");
 const spam = require("../../helpers/Antispam");
 const Skidgame = require("../../bot/games/skid");
 
-
 module.exports = {
     enabled: true,
     requireDiscord: true,
@@ -14,8 +13,6 @@ module.exports = {
         discord = client;
     },
     run: () => {
-        let PluginIsImported = false;
-
         let spamcount = [];
         let spampenalty = [];
 
@@ -74,38 +71,11 @@ module.exports = {
                 const author = message.author;
                 const timeout = 1000;
 
-
-                /*
-                if(spam(author.id, 20) === false)
-                {
-                    if(message.isMemberMentioned(discord.user))
-                    {
-                        message.react('🙂');
-                    }
-    
-                    if(message.content.toLowerCase().includes('clyde'))
-                    {
-                        channel.startTyping(timeout);
-                        message.react('🙂').then(msg => {
-                            setTimeout(() => {
-    
-                                channel.send("Hi there! 🙂").then(msg => {
-                                    channel.stopTyping(true);
-                                })
-                                .catch((err) => {});
-    
-                            }, timeout);
-                        });
-                    }
-                }
-                */
-
                 if(typeof(spamcount[author.id]) === "undefined")
                 {
                     spamcount[author.id] = 0;
                     spampenalty[author.id] = 0;
                 }
-                
 
                 // SKID Game
                 const Skidmessage = message.content.split(" ");
