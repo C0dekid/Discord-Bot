@@ -39,6 +39,7 @@ class Database {
                         self.connected = false;
                     });
 
+                    self.connected = true;
                     resolve('connected');
                 }
             });
