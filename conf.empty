@@ -1,0 +1,56 @@
+module.exports = {
+    bots: {
+        clyde: {
+            enabled: true,
+            maintenance: false,
+            developers: [],
+            nickname: "", // Force servers to use this nickname
+            prefix: "",
+            sayHiToNewMembers: true,
+            presence: {
+                type: 'playing',
+                status: "away",
+                playing: "",
+                isTyping: false
+            },
+            discord: {
+                ClientID: "",
+                ClientSecret: "",
+                ClientUsername: "",
+                ClientToken: ""
+            }
+        }
+    },
+    folders: {
+        events: "",
+        commands: ""
+    },
+    Pushbullet: {
+        key: "",
+        enable: true
+    },
+    mysql: {
+        host: "localhost",
+        user: "",
+        password: "",
+        database: "",
+        multipleStatements: true,
+        charset: "utf8mb4",
+        supportBigNumbers: true,
+	    bigNumberStrings: true
+    },
+    apis: {
+        c99: {
+            key: ""
+        },
+        webresolver: {
+            key: ""
+        }
+    },
+    socket: {
+        enable: false,
+        port: 30004,
+        htmlfolder: "/public_html",
+        engine: "ejs"
+    }
+};
