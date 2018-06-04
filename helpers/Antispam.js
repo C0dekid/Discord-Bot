@@ -19,7 +19,6 @@ const Antispam = (id, timeout) => {
 
     if(typeof(Authors[id]) === "undefined") {
         Authors[id] = { then: null }
-        // return false;
     }
     Authors[id].then = Date.now();
     isSpam = Math.round((Authors[id].then - now) / 1000) < t;

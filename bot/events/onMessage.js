@@ -10,6 +10,7 @@ module.exports = {
     enabled: true,
     requireDiscord: true,
     setClient: (client) => {
+        
         discord = client;
     },
     run: () => {
